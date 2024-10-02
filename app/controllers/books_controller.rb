@@ -1,19 +1,21 @@
 class BooksController < ApplicationController
   def new
-    @book = Book.new  # @listではない
+    @book = Book.new  # モデル名は大文字の単数形
   end
-
+ 
   def create
-    book = Book.new # newの後に(book_params)を記述するとエラー　なぜ？データを受け取り新規登録するためのインスタンス作成
+    book = Book.new(book_params) # データを受け取り新規登録するためのインスタンス作成
     book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
     redirect_to book_path(book.id)  
   end
 
   def index
-    @book = Book.all
+    @book = Book.new   #indexに新規の投稿するからこの記述が必要
+    @books = Book.all  #コントローラーやビューは自作の名前で複数形にすることが多い
   end
 
   def show
+    @book = book.find(params[:id])
   end
 
   def edit
@@ -21,6 +23,6 @@ class BooksController < ApplicationController
 
   private     # ストロングパラメータ
   def book_params
-    params.require(:book).permit(:title, :body)  #require(book)で良い？listじゃなくて？
+    params.require(:book).permit(:title, :body)  
   end
 end
