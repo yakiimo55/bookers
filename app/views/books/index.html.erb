@@ -12,22 +12,21 @@
     <tr>
       <td><%= book.title %></td>  <%#変数を入れてやるので<%=  の形にする%>
       <td><%= book.body %></td>
-      <td>Show</td>
-      <td>Edit</td>
-      <td>Destory</td>
+      <td>Show</td> <%#= link_to"Show", book_path %>
+      <td>Edit</td> <%#= link_to"Edit", edit_book_path(@book) %>
+      <td>Destroy</td>
     </tr>
   </tbody>
 </table>
-<% end %>
+<% end %>rails submit
 
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
   <h4>Title</h4>
   <%= f.text_field :title %>
-  
+
   <h4>Body</h4>
   <%= f.text_area :body %>
-  
+
   <%= f.submit 'create Book' %>  <%#'   'マーク必要。文字列と認識するため%>
 <% end %>
-  
