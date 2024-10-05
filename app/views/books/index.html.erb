@@ -12,11 +12,15 @@
     <tr>
       <td><%= book.title %></td>  <%#変数を入れてやるので<%=  の形にする%>
       <td><%= book.body %></td>
-      <td>Show</td> <%#= link_to"Show", book_path %>
-      <td>Edit</td> <%#= link_to"Edit", edit_book_path(@book) %>
+      <td>Show</td>  <%#これをテーブルの中に書かないほうが良い？link書くとエラー%>
+      <%#= link_to "Show", book_path(@book) %>
+      <td>Edit</td>
+      <%#= link_to "Edit", edit_book_path(@book) %>
       <td>Destroy</td>
+      <%#= link_to "Destroy", destroy_book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>
     </tr>
   </tbody>
+
 </table>
 <% end %>rails submit
 
