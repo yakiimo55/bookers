@@ -5,8 +5,12 @@ class BooksController < ApplicationController
 
   def create
     book = Book.new(book_params) # データを受け取り新規登録するためのインスタンス作成
-    book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
-    redirect_to book_path(book.id)
+    if book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
+      flash[:success] = "done successfully"
+      redirect_to book_path(book.id)
+    else
+      render 'new'
+    end
   end
 
   def index
@@ -24,14 +28,17 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(params[:id])  #showアクションにredirect [:id]の意味
+    if book.update(book_params)
+      flash[:success] = "done successfully"
+      redirect_to book_path(params[:id])  #showアクションにredirect [:id]の意味
+    else render 'edit'
+   end
   end
   
   def destroy
     book = Book.find(params[:id])  
     book.destroy
-    redirect_to'books'
+    redirect_to'/books'
   end
 
   private     # ストロングパラメータ

@@ -1,3 +1,10 @@
+
+<% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
 <table>
  <tr>
    <th>Title:</th>  <td><%= @book.title %></td>

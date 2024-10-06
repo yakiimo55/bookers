@@ -1,7 +1,5 @@
 <h1>Books</h1>
 
-<% @books.each do |book| %>  <%#位置はここで良い%>
-
 <table>
   <thead>
     <tr>
@@ -9,20 +7,20 @@
     </tr>
   </thead>
   <tbody>
+    <% @books.each do |book| %>  <%#each文　endの間は繰り返し。%>
     <tr>
       <td><%= book.title %></td>  <%#変数を入れてやるので<%=  の形にする%>
       <td><%= book.body %></td>
-      <td>Show</td>  <%#これをテーブルの中に書かないほうが良い？link書くとエラー%>
-      <%#= link_to "Show", book_path(@book) %>
-      <td>Edit</td>
-      <%#= link_to "Edit", edit_book_path(@book) %>
-      <td>Destroy</td>
-      <%#= link_to "Destroy", destroy_book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+      <!--<td>Show</td> --> <%#これをテーブルの中に書かないほうが良い？link書くとエラー%>
+      <td><%= link_to "Show", book_path(book) %></td>
+      <td><%= link_to "Edit", edit_book_path(book) %></td>
+      <td><%= link_to "Destroy", destroy_book_path(book), method: :delete, "data-confirm" => "Are you sure?" %></td>
     </tr>
+    <% end %> 
   </tbody>
 
 </table>
-<% end %>rails submit
+
 
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
