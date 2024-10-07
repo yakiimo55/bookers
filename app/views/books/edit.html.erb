@@ -1,5 +1,4 @@
 <h1>Editing Book</h1>
-
 <%#<%= form_with model: @book do |f| %>  <%#下記に書き換え%>  
 <%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
   
@@ -9,7 +8,18 @@
   <%= f.text_area :body %>
 
   <%= f.submit 'Update Book' %>
+   
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>error
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
 
 <% end %>
+
+
 
 <%= link_to "Show", book_path(@book) %>    |     <%= link_to "Back", books_path %>
