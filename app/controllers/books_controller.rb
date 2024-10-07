@@ -4,12 +4,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params) # データを受け取り新規登録するためのインスタンス作成
-    if book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
+    @book = Book.new(book_params) # データを受け取り新規登録するためのインスタンス作成
+    @books = Book.all
+    if @book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
       flash[:success] = "done successfully"
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book.id)
     else
-      render 'new'
+      render 'index'
     end
   end
 
@@ -24,6 +25,13 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @books = Book.all
+    if @book.save  # 3. データをデータベースに保存するためのsaveメソッド実行
+      flash[:success] = "done successfully"
+      redirect_to book_path(@book.id)
+    else
+      render 'edit'
+    end
   end
 
   def update
