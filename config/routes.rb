@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 #   get '/books/edit'
   resources :books, only: [:create, :index]
 
-  get '/' => 'homes#top'
+  root to: "homes#top"
   get 'books/:id' => 'books#show', as:'book'   #as以下は何のためにやってる？
   get 'books/:id/edit' => 'books#edit', as:'edit_book'
   patch 'books/:id' => 'books#update', as:'update_book'
